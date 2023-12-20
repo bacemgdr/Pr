@@ -2,6 +2,7 @@ function AddProduct() {
     return (
       <div className="App">
   
+  
       </div>
     );
   }
