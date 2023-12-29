@@ -4,7 +4,7 @@ function AddCategorie() {
       <AdminLayout>
 
       <div className="App">
-  
+        <h1> thisi is AddCategorie page </h1>
       </div>
       </AdminLayout>
     );

@@ -5,7 +5,8 @@ function AddProduct() {
       <AdminLayout>
 
       <div className="App">
-  <h1>ertfghjklm</h1>
+        <h1> thisi is AddProduct page </h1>
+  
       </div>
       </AdminLayout>
     );
