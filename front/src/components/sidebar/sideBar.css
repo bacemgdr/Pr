@@ -1,0 +1,31 @@
+
+aside {
+    width: 250px;
+    height: 100%;
+    
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-bottom: 10px;
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  nav ul li a:hover {
+    background-color: #555;
+  }
+  
