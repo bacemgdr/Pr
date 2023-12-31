@@ -2,62 +2,38 @@ import React from "react";
 function Register() {
   return (
     <div className="register">
-      <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">
-          Name
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="exampleInputEmail1" 
-        />
-
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Email
-          </label>
-          <input
-            type="passwordemail"
-            className="form-control"
-            id="exampleInputEmail1" 
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-          Phone 
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputEmail1" 
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-           Adresse
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputEmail1" 
-          />
-        </div>
+      <div className="wrapper">
+        <h2>Registration</h2>
+        <form action="#">
+          <div className="input-box">
+            <input type="text" placeholder="Enter your name" required="" />
+          </div>
+          <div className="input-box">
+            <input type="email" placeholder="Enter your email" required="" />
+          </div>
+          <div className="input-box">
+            <input type="password" placeholder="Create password" required="" />
+          </div>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Enter your phone number"
+              required=""
+            />
+          </div>
+          <div className="input-box">
+            <input type="text" placeholder="Enter your Adresse" required="" />
+          </div>
+          <div className="input-box button">
+            <input type="Submit" defaultValue="Register Now" />
+          </div>
+          <div className="text">
+            <h3>
+              Already have an account? <a href="/login">Login now</a>
+            </h3>
+          </div>
+        </form>
       </div>
-     
-
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
     </div>
   );
 }

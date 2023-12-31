@@ -7,9 +7,10 @@ const AdminLayout = ({ children }) => {
     return (
       <div>
         <Header />
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex'}}>
+
           <Sidebar />
-          <div style={{ flex: 1 }}>
+          <div  className="child-contain"style={{ flex: 1 , position: 'center' }}>
             {children}
           </div>
         </div>
