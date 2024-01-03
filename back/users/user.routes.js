@@ -16,7 +16,7 @@ router.post("/register", userRegister);
 router.post("/login", userLogin);
 
 
-router.use(authenticateToken);
+// router.use(authenticateToken);
 
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);

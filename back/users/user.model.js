@@ -4,17 +4,37 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.SECRET_KEY;
 
 
-const UserSchema = new mongoose.Schema({
-  fullName: String,
-  email: {
-    type: String,
-    required: true,
-    unique: true
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Number,
+      default: 0,
+    },
   },
-  password: String,
-  role: String
-});
-
+  { timestamps: true }
+);
 
 
 // Hash password before saving

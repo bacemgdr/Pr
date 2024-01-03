@@ -1,28 +1,90 @@
-import React from "react";
-function Register() {
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const navigate = useNavigate();
+
+  // form function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5000/user/register", {
+        name,
+        email,
+        password,
+        phone,
+        address,
+      });
+      if (res && res.data.success) {
+        toast.success(res.data && res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <div className="register">
       <div className="wrapper">
         <h2>Registration</h2>
-        <form action="#">
+        <form action="#" onSubmit={handleSubmit}>
           <div className="input-box">
-            <input type="text" placeholder="Enter your name" required="" />
+            <input type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Name"
+              required
+              autoFocus />
           </div>
           <div className="input-box">
-            <input type="email" placeholder="Enter your email" required="" />
+            <input type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Email "
+              required />
           </div>
           <div className="input-box">
-            <input type="password" placeholder="Create password" required="" />
+            <input   type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Your Password"
+              required
+             />
           </div>
           <div className="input-box">
             <input
-              type="text"
-              placeholder="Enter your phone number"
-              required=""
+               type="text"
+               value={phone}
+               onChange={(e) => setPhone(e.target.value)}
+               className="form-control"
+               id="exampleInputEmail1"
+               placeholder="Enter Your Phone"
+               required
             />
           </div>
           <div className="input-box">
-            <input type="text" placeholder="Enter your Adresse" required="" />
+            <input  type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Address"
+              required />
           </div>
           <div className="input-box button">
             <input type="Submit" defaultValue="Register Now" />
@@ -36,6 +98,6 @@ function Register() {
       </div>
     </div>
   );
-}
+};
 
 export default Register;
