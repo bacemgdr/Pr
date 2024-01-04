@@ -21,17 +21,15 @@ const Register = () => {
         phone,
         address,
       });
-      if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
-        navigate("/login");
-      } else {
-        toast.error(res.data.message);
+        
+          toast.success(res.data && res.data.message);
+          navigate("/login");
       }
-    } catch (error) {
+      
+     catch (error) {
       console.log(error);
       toast.error("Something went wrong");
-    }
-  };
+     }}
   return (
     <div className="register">
       <div className="wrapper">

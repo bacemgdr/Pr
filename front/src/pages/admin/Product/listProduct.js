@@ -1,6 +1,24 @@
 import AdminLayout from '../adminLayout/AdminLayout'
+import React , {useState, useEffect} from "react";
 
-function ListProduct() {
+import axios from "axios";
+
+
+const  ListProduct= () => {
+    const [data , setData] = useState([]);
+    useEffect(() =>{
+        getProduct();
+   },[])
+   const getProduct = async() => {
+  
+    const res = await axios.get('http://localhost:5000/product');
+    if(res.status === 200) {
+      setData(res.data);
+    }
+  };
+
+  console.log("data");
+
     return (
       <AdminLayout>
 
@@ -9,40 +27,43 @@ function ListProduct() {
       <div>
             <h2>Product List</h2>
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>ANTA Blue Premium T-shirt</td>
-                            <td>Fashion</td>
-                            <td>Raymond</td>
-                            <td>$21.00</td>
-                            <td>O</td>
-                        </tr>
-                        <tr>
-                            <td>Ab Premium T-shirt</td>
-                            <td>Women</td>
-                            <td>AZER</td>
-                            <td>$55.50</td>
-                            <td>1</td>
-                        </tr>
-                        {/* ... Additional product rows ... */}
-                    </tbody>
-                </table>
+            <table className="styled-table">
+      <thead>
+        <tr>
+          <th style={{textAlign : "center"}}>No</th>
+          <th style={{textAlign : "center"}}>Image</th>
+          <th style={{textAlign : "center"}}>Title</th>
+          <th style={{textAlign : "center"}}>Price</th>
+        
+          <th style={{textAlign : "center"}}>categorie</th>
+          <th style={{textAlign : "center"}}>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data &&
+          data.map((item ,index) => {
+            return (
+
+              <tr key={index}>
+                <th scope="row">{index + 1 }</th>
+                <td> <img src="{item.productImg}" alt="Description de l'image"></img></td>
+                <td>{item.productTitle}</td>
+                <td>{item.productPrice}</td>
+                <td>{item.productCategorie}</td>
+               
+              </tr>
+
+
+            );
+          })};
+      </tbody>
+    </table>
             </div>
             <button>Add Product</button>
         </div>
       
       </AdminLayout>
     );
-  }
-  
+  };
+
   export default ListProduct;

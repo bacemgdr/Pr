@@ -19,12 +19,11 @@ const Login = () => {
         email,
         password,
       });
-      if (res && res.data.success) {
+ 
         toast.success(res.data && res.data.message);
         navigate("/");
-      } else {
-        toast.error(res.data.message);
-      }
+        console.log('rrr',res.data);
+   
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -34,6 +33,7 @@ const Login = () => {
     
     <div className="box">
     <h1>Login</h1>
+    <form action="#" onSubmit={handleSubmit}>
     <input
               type="email"
               value={email}
@@ -54,7 +54,8 @@ const Login = () => {
             />
      <button type="submit" className="btn btn-primary">
             LOGIN
-          </button>
+          </button>''
+          </form>
     <p>Not a member? <a href="/register">Sign Up</a></p>
   </div>
   

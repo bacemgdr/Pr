@@ -8,6 +8,7 @@ const getAll = async () => {         // Get all Users
         throw error;
     }
 };
+
 const getById = async (id) => {  // Get User
     try {
         const user = await User.findById(id);
