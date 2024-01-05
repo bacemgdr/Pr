@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const  {getById}= require ('../users/user.service')
 const SECRET_KEY = process.env.SECRET_KEY;
+
+
 const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
   if (!authHeader) {

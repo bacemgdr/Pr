@@ -18,6 +18,8 @@ const createProduct = async (req, res) => {
 
 
 
+
+
 const getAllProduct = async (req, res) => {
     try {
         const allProduct = await getAll();
