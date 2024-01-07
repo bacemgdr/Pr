@@ -3,15 +3,17 @@ const Product =  require('./product.model');
 const create = async(data) => {
 
     try { 
-        console.log('service',data);
+        // console.log('service',data.productImg);
         const newProduct = new Product(data);
 
         const savedProduct = await newProduct.save();
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa",savedProduct);
         return savedProduct;
     } catch (error) {
         throw error;
     }
 };
+
 
 const getAll = async () => {         // Get all Product
     try {

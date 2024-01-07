@@ -1,78 +1,69 @@
 import React, { useState, useEffect } from "react";
-import UserLayout from "./userLayout/userLayout";
+import { Link } from "react-router-dom";
+import UserLayout from './userLayout/userLayout';
 import axios from "axios";
-import {useAuth} from "../context/auth";
-
-import moment from "moment";
-
-
 
 const MyOrder = () => {
-  const [orders, setOrders] = useState([]);
-  const [auth, setAuth] = useAuth();
-  const getOrders = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:5000/order");
-      setOrders(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [userOrders, setUserOrders] = useState([]);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    if (auth?.token) getOrders();
-  }, [auth?.token]);
+    const fetchUserOrders = async () => {
+      try {
+        const ordersResponse = await axios.get(`http://localhost:5000/order/buyer/${userId}`);
+        setUserOrders(ordersResponse.data);
+      } catch (error) {
+        console.error("Error fetching user orders:", error);
+      }
+    };
 
+    fetchUserOrders();
+  }, [userId]);
 
-    return (
-      <UserLayout>
+  return (
+    <UserLayout>
+      <div>
+  <h1>My Orders</h1>
+  {userOrders && userOrders.length > 0 ? (
+ <table className="styled-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Status</th>
+          <th>Payment Method</th>
+          <th>Product ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {userOrders.map((order, index) => (
+          <tr key={index}>
+            <td>{order._id}</td>
+            <td>{order.status}</td>
+            <td>{order.payment}</td>
+            <td>
+              <ul>
+                {order.products.map((product, productIndex) => (
+                  <li key={productIndex}>{product._id}</li>
+                ))}
+              </ul>
+            </td>
+            <td>
+              <Link to={`/user/OrderDetails/${order._id}`}>
+                <button>View Details</button>
+              </Link>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>No orders found.</p>
+  )}
+</div>
 
-<div className="col-md-9">
-            <h1 className="text-center">All Orders</h1>
-            {orders?.map((o, i) => {
-              return (
-                <div className="border shadow">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Quantity</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{i + 1}</td>
-                        <td>{o?.status}</td>
-                        <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).fromNow()}</td>
-                        <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                        <td>{o?.products?.length}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="container">
-                    {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                        
-                        <div className="col-md-8">
-                          <p>{p.name}</p>
-                          <p>{p.description.substring(0, 30)}</p>
-                          <p>Price : {p.price}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-      
-      </UserLayout>
-    );
-  }
-  
-  export default MyOrder;
+    </UserLayout>
+  );
+};
+
+export default MyOrder;

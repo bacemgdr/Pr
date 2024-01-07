@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
+const Product = require('../Product/product.model');
+const User = require('../users/user.model');
 
 const orderSchema = new mongoose.Schema(
   {
     products: [
       {
         type: mongoose.ObjectId,
-        ref: "Products",
+        ref: "Product", // Update this to match the actual name of your Product model
       },
     ],
-    payment: {},
+    payment: String,
     buyer: {
       type: mongoose.ObjectId,
-      ref: "users",
+      ref: "User",
     },
-    status: {
+    status: { 
       type: String,
       default: "Not Process",
-      enum: ["Not Process", "Processing", "Shipped", "deliverd", "cancel"],
+      enum: ["Not Process", "Processing", "Shipped", "delivered", "cancel"],
     },
   },
   { timestamps: true }
 );
+
+
 
 
 const Order = mongoose.model("Order", orderSchema);

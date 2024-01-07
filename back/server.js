@@ -8,13 +8,15 @@ const PORT = process.env.PORT || 3000; // Set a default port if PORT is not defi
 
 
 
-const productRoutes = require('./Product/product.routes');
-const orderRoutes = require('./Order/Order.routes');
+
 
 app.use(cookieParser());
 app.use(cors()); // Use cors middleware
 
 const userRoutes = require('./users/user.routes');
+const productRoutes = require('./Product/product.routes');
+const orderRoutes = require('./Order/Order.routes');
+const adminRoutes = require ('./admin/admin.routes')
 
 
 
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/product', productRoutes);
 app.use('/order', orderRoutes);
+app.use('/admin',adminRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

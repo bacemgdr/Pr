@@ -1,10 +1,11 @@
 import AdminLayout from '../adminLayout/AdminLayout'
 import React , {useState, useEffect} from "react";
-
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
 const  ListProduct= () => {
+  const navigate = useNavigate();
     const [data , setData] = useState([]);
     useEffect(() =>{
         getProduct();
@@ -17,7 +18,12 @@ const  ListProduct= () => {
     }
   };
 
-  console.log("data");
+  
+  const handleAddProduct = () => {
+    // Navigate to the "/admin/addProduct" route
+    navigate('/admin/addProduct');
+  };
+ 
 
     return (
       <AdminLayout>
@@ -46,7 +52,7 @@ const  ListProduct= () => {
 
               <tr key={index}>
                 <th scope="row">{index + 1 }</th>
-                <td> <img src="{item.productImg}" alt="Description de l'image"></img></td>
+                <td> <img src={item.productImg} alt="Description de l'image"></img></td>
                 <td>{item.productTitle}</td>
                 <td>{item.productPrice}</td>
                 <td>{item.productCategorie}</td>
@@ -54,12 +60,12 @@ const  ListProduct= () => {
               </tr>
 
 
-            );
-          })};
+            )
+          })}
       </tbody>
     </table>
             </div>
-            <button>Add Product</button>
+            <button onClick={handleAddProduct}>Add Product</button>
         </div>
       
       </AdminLayout>

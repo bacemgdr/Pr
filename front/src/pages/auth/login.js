@@ -12,23 +12,46 @@ const Login = () => {
   const navigate = useNavigate();
 
   // form function
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:5000/user/login", {
-        email,
-        password,
-      });
- 
-        toast.success(res.data && res.data.message);
-        navigate("/");
-        console.log('rrr',res.data);
-   
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
+  // form function
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:5000/user/login", {
+      email,
+      password,
+    });
+
+    if (res.data && res.data.token && res.data.user) {
+      // Store token and username in local storage
+
+      const { token, user } = res.data;
+      console.log(user);
+
+      // Store token and username in local storage
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", user.name);
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", user._id);
+      localStorage.setItem("role", "user");
+      // console.log(res.data);
+      // console.log(token);
+     
+
+      // Display success message
+      toast.success("Login successful!");
+
+      // Redirect to home page after successful login
+      navigate("/");
+    } else {
+      // Display error message if the response doesn't contain token and user
+      toast.error("Invalid response from server");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
+
   return (
     
     <div className="box">
@@ -57,6 +80,8 @@ const Login = () => {
           </button>''
           </form>
     <p>Not a member? <a href="/register">Sign Up</a></p>
+    <p>Not a member? <a href="/adminRegister">admin register</a></p>
+    <p>Not a member? <a href="/adminLogin">admin Login</a></p>
   </div>
   
   );

@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 
-const User = ({ user }) => {
+const Users = ({ user }) => {
   const { id, name, email } = user;
   return (
     <Card>
@@ -23,6 +23,6 @@ const User = ({ user }) => {
         </Col>
       </Row>
     </Card>
-  );
+  )
 };
-export default User;
+export default Users;

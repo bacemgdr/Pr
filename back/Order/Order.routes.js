@@ -1,16 +1,21 @@
 const express = require("express");
-
 const router = express.Router();
+const orderController = require("./order.controlleur");
+// const { isAdmin, requireSignIn } = require("../middlewares/authmiddleware");
 
-const {getOrdersController ,getAllOrdersController , orderStatusController} 
-= require("./order.controlleur");
-const {isAdmin , requireSignIn} = require("../middlewares/authmidellware");
+// Orders for a specific user
+router.get("/all",  orderController.getAllOrdersController);
+router.get("/buyer/:id", orderController.getOrdersController);
 
-//orders
-router.get("/",getOrdersController);
+// All orders (admin)
+router.get('/:orderId', orderController.getOrderByIdController);
+// Create a new order
+router.post("/",orderController.createOrderController);
 
-//all orders (admin)
-router.get("/all-orders",requireSignIn,getAllOrdersController);
+// Delete an order
+router.delete("/:orderId",  orderController.deleteOrderController);
 
-// order status update (admin)
-router.put("/order-status/:orderId", requireSignIn,isAdmin,orderStatusController);
+// Update order status (admin)
+router.put("/order-status/:orderId",  orderController.orderStatusController);
+
+module.exports = router;

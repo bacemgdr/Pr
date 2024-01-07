@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './header.css';
+import '../../../components/header/header.css';
 
 function Header() {
   const user = localStorage.getItem('user');
