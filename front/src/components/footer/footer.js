@@ -1,12 +1,44 @@
+import { Box, Button, Typography } from '@mui/material';
+import { Copyright } from '@mui/icons-material';
 
-import React from 'react';
-import './footer.css'; 
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="footer">
-      <p>This is the footer</p>
-    </footer>
+    <Box
+    sx={{
+     bgcolor: "#2B3445",
+      py: 1.3,
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+    }}
+  >
+    <Typography
+      justifyContent={"center"}
+      display={"flex"}
+      alignItems={"center"}
+      color={"HighlightText"}
+      variant="h6"
+      sx={{fontSize: 18}}
+    >
+      Designed and developed by
+      <Button
+          sx={{
+            mx: 0.5,
+            fontSize: "18px",
+            textTransform: "capitalize",
+            color: "#ff7790",
+          }}
+          variant="text"
+          color="primary"
+        >
+         Coding Brotherhood
+         <Copyright sx={{
+            mx: 0.5,
+            fontSize: "18px"}}/>
+        </Button>
+      2024
+    </Typography>
+  </Box>
   );
 }
 
