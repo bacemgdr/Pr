@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { Rating,Typography,} from "@mui/material";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import './home.css'
 import UserLayout from "./userLayout/userLayout";
+// import Hero from "../../components/hero/hero";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -71,30 +79,39 @@ const userId = localStorage.getItem("userId")
     <div>
       <h1>Product List</h1>
       <div className="product-list">
-        {products.map(product => (
-          <div key={product._id} className="product-card">
-            <img src={product.productImg} alt={product.productTitle} />
-            <h3>{product.productTitle}</h3>
-            <p>{product.productDescription}</p>
-            <p>Price: ${product.productPrice}</p>
-            {user && (
-              <button onClick={() => addToCart(product._id)}>
-                Add to Cart
-              </button>
-            )}
-          </div>
+        {products.map((product) => (
+          <Card className="" sx={{ maxWidth: 345 }} key={product._id}>
+            <CardMedia component="img" alt="green iguana" height="140" image={product.productImg} />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {product.productTitle}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {product.productDescription}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <div>${product.productPrice}</div>
+          
+              {user && (
+                <FontAwesomeIcon onClick={() => addToCart(product._id)} icon={faCartPlus} />
+              )}
+              <Rating name="read-only" value={product.productRating} readOnly />
+            </CardActions>
+          </Card>
         ))}
+  
       </div>
-
+  
       {user && (
         <div className="cart-section">
           <h2>Shopping Cart</h2>
           <ul>
-            {cart.map(item => (
+            {cart.map((item) => (
               <li key={item._id}>{item.productTitle}</li>
             ))}
           </ul>
-
+  
           <div className="payment-section">
             <label>Select Payment Method:</label>
             <select
@@ -102,19 +119,20 @@ const userId = localStorage.getItem("userId")
               onChange={(e) => setSelectedPaymentMethod(e.target.value)}
             >
               <option value="" disabled>Select Payment Method</option>
-              {paymentMethods.map(method => (
-                <option key={method} value={method}>{method}</option>
+              {paymentMethods.map((method) => (
+                <option key={method} value={method}>
+                  {method}
+                </option>
               ))}
             </select>
           </div>
-
-          {cart.length > 0 && (
-            <button onClick={confirmOrder}>Confirm Order</button>
-          )}
+  
+          {cart.length > 0 && <button onClick={confirmOrder}>Confirm Order</button>}
         </div>
       )}
     </div>
-    </UserLayout>
+  </UserLayout>
+  
   );
 };
 

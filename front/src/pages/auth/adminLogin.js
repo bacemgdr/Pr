@@ -63,7 +63,7 @@ const AdminLogin = () => {
         </button>
       </form>
       <p>
-        Not a member? <a href="/adminRegister">Sign Up</a>
+        Not a member? <a href="/admin/register">Sign Up</a>
       </p>
     </div>
   );

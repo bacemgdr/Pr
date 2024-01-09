@@ -11,7 +11,7 @@ const getAll = async () => {         // Get all Admins
 
 const getById = async (id) => {  // Get Admin
     try {
-        console.log('hhhhhhhhhhhhhhhhhh',req.params.id);
+        
         const admin = await Admin.findById(id);
         return admin;
     } catch (error) {
