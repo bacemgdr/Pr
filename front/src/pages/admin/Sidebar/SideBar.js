@@ -69,7 +69,7 @@ function SideBar() {
                 <a href="/admin/Order">List Order</a>
               </li>
               <li>
-                <a href="/admin/DetailOrder">Details Order</a>
+                <a href="/admin/Details">Details Order</a>
               </li>
             </ul>
 

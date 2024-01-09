@@ -60,30 +60,6 @@ const AddProduct = () => {
         <h1> Add Product </h1>
         <form action="#" onSubmit={handleSubmit}>
           <div className="input-box22">
-            {/* <label className="btn btn-outline-secondary col-md-12">
-              {productImg ? productImg.name : "Upload Photo"}
-              <input
-                type="file"
-                name="photo"
-                accept="image/*"
-                onChange={(e) => setImage(e.target.files[0])}
-                hidden
-              />
-            </label>
-          </div>
-          <div className="mb-3">
-            {productImg && (
-              <div className="text-center">
-                <img
-                  src={URL.createObjectURL(productImg)}
-                  alt="productPic"
-                  height={"200px"}
-                  className="img img-responsive"
-                />
-              </div>
-            )} */}
-
-
 
 <div className="input-box2">
             <input

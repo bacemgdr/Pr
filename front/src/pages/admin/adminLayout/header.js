@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../../components/header/header.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+
 
 function Header() {
   const user = localStorage.getItem('user');
@@ -18,13 +21,17 @@ function Header() {
   };
 
   return (
-    <div className="header">
-      <h1>Header</h1>
+    <div className="admin-header">
+    
       {user ? (
         // If user is logged in, display user's name and logout button
-        <div>
+        <div className='admin-container'>
+          <div className='admin1'>
           <p>Welcome, {user}!</p>
-          <button onClick={handleLogout}>Logout</button>
+          <img src='https://bootdey.com/img/Content/avatar/avatar7.png' style={{ width: '30px', height: '40px',  }}></img>
+         </div>
+          <div  onClick={handleLogout}>
+                <FontAwesomeIcon icon={faRightFromBracket} /></div>
         </div>
       ) : (
         // If user is not logged in, display connect button

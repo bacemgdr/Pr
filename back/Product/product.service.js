@@ -26,7 +26,7 @@ const getAll = async () => {         // Get all Product
 
 const getByTitle = async (productTitle) => {  // Get Product by title 
     try {
-        const Product = await User.findById(productTitle);
+        const Product = await Product.findById(productTitle);
         return Product;
     } catch (error) {
         throw error;
@@ -35,7 +35,7 @@ const getByTitle = async (productTitle) => {  // Get Product by title
 
 const getByCategorie = async (productCategorie) => {  // Get Product by categorie
     try {
-        const Product = await User.findById(productCategorie);
+        const Product = await Product.findById(productCategorie);
         return Product;
     } catch (error) {
         throw error;
@@ -54,8 +54,11 @@ const updateById = async (id, newData) => {   // Update Product by ID
 };
 const deleteById = async (id) => {  // Delete Product by ID
     try {
-        const deletedProduct = await User.findByIdAndDelete(id);
-        return deletedProduct;
+        const deletedProduct = await Product.findByIdAndDelete(id);
+        res.status(200).send({
+            success: true,
+            message: "Product Deleted successfully",
+          });
     } catch (error) {
         throw error;
     }

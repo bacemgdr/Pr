@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUser,faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+
 import './header.css';
 
 function Header() {
@@ -14,24 +17,45 @@ function Header() {
     localStorage.removeItem('role');
 
     // Navigate to the login page after logout
-    navigate('/login');
+    navigate('/home');
   };
 
   return (
-    <div className="header">
-      <h1>Header</h1>
-      {user ? (
-        // If user is logged in, display user's name and logout button
-        <div>
-          <p>Welcome, {user}!</p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        // If user is not logged in, display connect button
-        <Link to="/login">Connect</Link>
-      )}
+
+
+
+
+    <header>
+    <div className="logo">
+      <img src="https://bazaar.ui-lib.com/assets/images/logo2.svg"></img>
     </div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Accueil</Link>
+        </li>
+        <li>
+          <Link to="/user/order">MyOrder</Link>
+        </li>
+        <li>
+          <Link to="/register">Inscription</Link>
+        </li>
+        <li>
+          {user ? (
+            <>
+              <p>Welcome, {user}!</p>
+              <div  onClick={handleLogout}>
+                <Link to ="/home"><FontAwesomeIcon icon={faRightFromBracket} /></Link></div>
+            </>
+          ) : (
+            <Link to="/login"> <FontAwesomeIcon icon={faUser} /></Link>
+          )}
+        </li>
+      </ul>
+    </nav>
+  </header>
   );
 }
 
 export default Header;
+  

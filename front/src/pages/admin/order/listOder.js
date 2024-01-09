@@ -25,21 +25,33 @@ const ListOrder = () => {
   return (
     <AdminLayout>
       <div>
-        <h1>Admin Order List</h1>
-        <ul>
-          {orders.map((order) => (
-            <li key={order._id}>
-              <p>Order ID: {order._id}</p>
-              <p>Status: {order.status}</p>
-              <p>Payment Method: {order.payment}</p>
-          
-              <Link to={`/admin/DetailOrder/${order._id}`}>
-                <button>View Details</button>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <h1>Admin Order List</h1>
+  <table className="styled-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Status</th>
+        <th>Payment Method</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {orders.map((order) => (
+        <tr key={order._id}>
+          <td>{order._id}</td>
+          <td>{order.status}</td>
+          <td>{order.payment}</td>
+          <td>
+            <Link to={`/admin/DetailOrder/${order._id}`}>
+              <button>View Details</button>
+            </Link>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
     </AdminLayout>
   );
 };

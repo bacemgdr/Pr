@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header';
-import Footer from '../../../components/footer/footer';
+
 import Sidebar from '../../../components/sidebar/sidebar';
 
 const AdminLayout = ({ children }) => {
@@ -14,7 +14,7 @@ const AdminLayout = ({ children }) => {
             {children}
           </div>
         </div>
-        <Footer />
+        
       </div>
     );
   };

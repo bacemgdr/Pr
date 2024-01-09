@@ -12,7 +12,8 @@ function Admin() {
       try {
         const response = await axios.get(`http://localhost:5000/admin/${id}`);
         setAdminData(response.data);
-        console.log(adminData);
+        console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching admin data:", error);
       }

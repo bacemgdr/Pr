@@ -13,6 +13,6 @@ router.get("/", getAllProduct);
 // router.get("/id", getProductByTiltle);
 // router.get("/id", getProductByCategorie);
 router.put("/:id",updateProductById);
-router.delete("/:id", deleteProductById);
+router.delete('/:id', deleteProductById);
 
 module.exports = router;
