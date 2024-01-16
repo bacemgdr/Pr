@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import toast from "react-hot-toast";
 import AdminLayout from '../adminLayout/AdminLayout';
 
@@ -92,6 +92,9 @@ const ListProduct = () => {
                           onClick={() => handleDelete(item._id)}
                           icon={faTrash}
                         />{' '}
+                        <FontAwesomeIcon
+                        //  onClick={() => handleUpdate(item._id)}
+                          icon={faPenToSquare} />
                        
                       </td>
                     </tr>
